@@ -64,7 +64,7 @@ and register this new command in the AppServiceProvider:
 ```php
 public function register()
 {
-    $this->app->bind(SitemapCreator::class, function () {
+    $this->app->bind(\FlatFileCms\Publish\Console\SitemapCreator::class, function () {
         return new \App\Console\Commands\SitemapCreator();
     });
 }
