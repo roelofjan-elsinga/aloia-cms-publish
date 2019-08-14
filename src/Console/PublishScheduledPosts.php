@@ -3,17 +3,10 @@
 namespace FlatFileCms\Publish\Console;
 
 use FlatFileCms\Article;
+use FlatFileCms\Publish\Tasks\GenerateFeed;
+use FlatFileCms\Publish\Tasks\GenerateSitemap;
+use FlatFileCms\Publish\Tasks\MarkPostsForTodayAsActive;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
-use Main\Tasks\Deploy\MarkDeploymentAsInactive;
-use Main\Tasks\Deploy\PushLocalToRemote;
-use Main\Tasks\Publish\CommitChangesToGit;
-use Main\Tasks\Publish\GenerateFeed;
-use Main\Tasks\Publish\GenerateSitemap;
-use Main\Tasks\Publish\MarkPostsForTodayAsActive;
-use Main\Tasks\Publish\StageArticleMetaDataInGit;
-use Main\Tasks\Publish\StageAtomFeedInGit;
-use Main\Tasks\Publish\StageSitemapInGit;
 
 class PublishScheduledPosts extends TaskCommand
 {
@@ -39,13 +32,7 @@ class PublishScheduledPosts extends TaskCommand
     protected $tasks = [
         MarkPostsForTodayAsActive::class,
         GenerateFeed::class,
-        GenerateSitemap::class,
-        StageAtomFeedInGit::class,
-        StageSitemapInGit::class,
-        StageArticleMetaDataInGit::class,
-        CommitChangesToGit::class,
-        MarkDeploymentAsInactive::class,
-        PushLocalToRemote::class
+        GenerateSitemap::class
     ];
 
     /**

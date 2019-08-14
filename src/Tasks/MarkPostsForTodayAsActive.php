@@ -6,8 +6,6 @@ namespace FlatFileCms\Publish\Tasks;
 use Carbon\Carbon;
 use FlatFileCms\Article;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
-use Main\Tasks\TaskInterface;
 
 class MarkPostsForTodayAsActive implements TaskInterface
 {
