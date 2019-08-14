@@ -4,9 +4,8 @@ namespace FlatFileCms\Publish\Console;
 
 use Carbon\Carbon;
 use FlatFileCms\Page;
-use FlatFileCms\Publish\Transformers\ArticleFeedItem;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use FlatFileCms\Article;
@@ -19,7 +18,13 @@ class SitemapCreator extends Command
     private $domain;
 
     /**@var string*/
-    private $lastmod;
+    protected $lastmod;
+
+    /**@var string*/
+    private $sitemap_file_path;
+
+    /**@var string*/
+    private $sitemap_target_file_path;
 
     /**
      * The name and signature of the console command.
@@ -42,7 +47,9 @@ class SitemapCreator extends Command
     {
         parent::__construct();
 
-        $this->domain = Cache::get('flatfilecms-publish.site_url');
+        $this->domain = Config::get('flatfilecms-publish.site_url');
+        $this->sitemap_file_path = Config::get('flatfilecms-publish.sitemap_file_path');
+        $this->sitemap_target_file_path = Config::get('flatfilecms-publish.sitemap_target_file_path');
         $this->lastmod = Carbon::now()->toDateString();
     }
 
@@ -74,6 +81,8 @@ class SitemapCreator extends Command
             $generator->add($url, 0.7, $this->lastmod, 'monthly');
         }
 
+        $this->appendAdditionalUrls($generator);
+
         $this->persistUrlsToSitemap($generator->toXML());
 
         $this->createSymlinkForSitemap();
@@ -90,8 +99,18 @@ class SitemapCreator extends Command
     private function getArticleUrls(): array
     {
         return Article::published()
+            ->filter(function (Article $article) {
+                return empty($article->url());
+            })
             ->map(function (Article $article) {
-                return ArticleFeedItem::forArticle($article)->url();
+
+                $article_path = Config::get('flatfilecms-publish.article_path');
+
+                $article_path_prefix = $article_path[0] === '/' ? '' : '/';
+
+                $article_path_suffix = $article_path[strlen($article_path) - 1] === '/' ? '' : '/';
+
+                return $article_path_prefix . $article_path . $article_path_suffix . $article->slug();
             })
             ->toArray();
     }
@@ -103,17 +122,25 @@ class SitemapCreator extends Command
      */
     private function persistUrlsToSitemap(string $sitemap)
     {
-        $filename = "sitemap.xml";
+        unlink($this->sitemap_file_path);
 
-        Storage::delete($filename);
-
-        Storage::put($filename, $sitemap);
+        file_put_contents($this->sitemap_file_path, $sitemap);
     }
 
     private function createSymlinkForSitemap()
     {
-        if (!File::exists(public_path('sitemap.xml'))) {
-            File::link(storage_path('app/sitemap.xml'), public_path('sitemap.xml'));
+        if (!file_exists($this->sitemap_target_file_path)) {
+            File::link($this->sitemap_file_path, $this->sitemap_target_file_path);
         }
+    }
+
+    /**
+     * This adds a hook in case a command is extending this command and additional URL's need to be added
+     *
+     * @param SitemapGenerator $generator
+     */
+    protected function appendAdditionalUrls(SitemapGenerator $generator): void
+    {
+        return;
     }
 }

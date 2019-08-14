@@ -81,6 +81,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Flat File CMS Publish Sitemap target file path
+    |--------------------------------------------------------------------------
+    |
+    | This target file path will be used to create a symlink for the original
+    | version to the target location.
+    |
+    */
+
+    'sitemap_target_file_path' => public_path('sitemap.xml'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Flat File CMS Publish Article path
     |--------------------------------------------------------------------------
     |

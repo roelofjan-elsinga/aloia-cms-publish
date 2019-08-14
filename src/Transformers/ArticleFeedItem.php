@@ -7,7 +7,7 @@ namespace FlatFileCms\Publish\Transformers;
 use AtomFeedGenerator\FeedItem;
 use Carbon\Carbon;
 use FlatFileCms\Contracts\ArticleInterface;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 
 class ArticleFeedItem implements FeedItem
 {
@@ -54,9 +54,9 @@ class ArticleFeedItem implements FeedItem
      */
     public function url(): string
     {
-        $domain = Cache::get('flatfilecms-publish.site_url');
+        $domain = Config::get('flatfilecms-publish.site_url');
 
-        $article_path = Cache::get('flatfilecms-publish.article_path');
+        $article_path = Config::get('flatfilecms-publish.article_path');
 
         $article_path_prefix = $article_path[0] === '/' ? '' : '/';
 
@@ -106,7 +106,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageUrl(): string
     {
-        $domain = Cache::get('flatfilecms-publish.site_url');
+        $domain = Config::get('flatfilecms-publish.site_url');
 
         $image_url = $this->article->image();
 
