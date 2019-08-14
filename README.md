@@ -1,6 +1,6 @@
 # Flat File CMS Auto Publishing
 
-This package contains a drop-in CMS that uses files to store its contents.
+This package is a publishing plugin for roelofjan-elsinga/flat-file-cms.
 
 ## Installation
 
