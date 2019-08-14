@@ -1,0 +1,46 @@
+{
+  "name": "roelofjan-elsinga/flat-file-cms-publish",
+  "description": "A publishing plugin for roelofjan-elsinga/flat-file-cms.",
+  "keywords": [
+    "laravel",
+    "cms",
+    "file"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roelof Jan Elsinga",
+      "email": "roelofjanelsinga@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "FlatFileCms\\Publish\\": "src/",
+      "FlatFileCms\\Tests\\": "tests/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/TestCase.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "FlatFileCms\\Publish\\ServiceProvider"
+      ]
+    }
+  },
+  "require": {
+    "ext-mbstring": "*",
+    "roelofjan-elsinga/flat-file-cms": "^0.10.3",
+    "roelofjan-elsinga/atom-feed-generator": "^0.1.0",
+    "roelofjan-elsinga/sitemap-generator": "^0.3.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^3.8",
+    "mikey179/vfsstream": "^1.6",
+    "phpunit/phpunit": "^8.3",
+    "spatie/phpunit-watcher": "^1.11"
+  }
+}
