@@ -54,15 +54,13 @@ class ArticleFeedItem implements FeedItem
      */
     public function url(): string
     {
-        $domain = Config::get('flatfilecms-publish.site_url');
-
         $article_path = Config::get('flatfilecms-publish.article_path');
 
-        $article_path_prefix = $article_path[0] === '/' ? '' : '/';
+        $article_path = $article_path[0] === '/' ? substr($article_path, 1) : $article_path;
 
         $article_path_suffix = $article_path[strlen($article_path) - 1] === '/' ? '' : '/';
 
-        return $domain . $article_path_prefix . $article_path . $article_path_suffix . $this->article->slug();
+        return $article_path . $article_path_suffix . $this->article->slug();
     }
 
     /**

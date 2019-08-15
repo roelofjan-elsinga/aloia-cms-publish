@@ -36,6 +36,12 @@ class AtomFeedGeneratorCommand extends Command
 
         $articles = Article::published()
 
+            ->filter(function (Article $article) {
+
+                return empty($article->url());
+
+            })
+
             ->map(function (Article $article) {
 
                 return ArticleFeedItem::forArticle($article);
