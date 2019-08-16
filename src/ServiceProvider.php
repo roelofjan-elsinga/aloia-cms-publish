@@ -22,13 +22,11 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__ . '/../config/flatfilecms-publish.php' => config_path('flatfilecms-publish.php'),
         ], 'config');
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                AtomFeedGeneratorCommand::class,
-                PublishScheduledPosts::class,
-                SitemapCreator::class
-            ]);
-        }
+        $this->commands([
+            AtomFeedGeneratorCommand::class,
+            PublishScheduledPosts::class,
+            SitemapCreator::class
+        ]);
     }
 
 }
