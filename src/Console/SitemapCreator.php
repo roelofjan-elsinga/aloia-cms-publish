@@ -103,7 +103,6 @@ class SitemapCreator extends Command
                 return empty($article->url());
             })
             ->map(function (Article $article) {
-
                 $article_path = Config::get('flatfilecms-publish.article_path');
 
                 $article_path_prefix = $article_path[0] === '/' ? '' : '/';

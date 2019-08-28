@@ -22,5 +22,4 @@ interface Transformer
      * @return FeedItem
      */
     public function toTarget(): FeedItem;
-
 }

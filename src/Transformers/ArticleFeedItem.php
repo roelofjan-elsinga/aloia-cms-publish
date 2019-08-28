@@ -3,7 +3,6 @@
 
 namespace FlatFileCms\Publish\Transformers;
 
-
 use AtomFeedGenerator\FeedItem;
 use Carbon\Carbon;
 use FlatFileCms\Contracts\ArticleInterface;

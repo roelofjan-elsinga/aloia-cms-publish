@@ -24,7 +24,21 @@
       "tests/TestCase.php"
     ]
   },
+  "scripts": {
+    "post-install-cmd": "vendor/bin/cghooks add --ignore-lock",
+    "post-update-cmd": "vendor/bin/cghooks update"
+  },
   "extra": {
+    "hooks": {
+      "pre-commit": [
+        "echo committing as $(git config user.name)",
+        "./vendor/bin/php-cs-fixer fix . --rules=@PSR2"
+      ],
+      "pre-push": [
+        "./vendor/bin/php-cs-fixer fix --dry-run . --rules=@PSR2"
+      ],
+      "post-merge": "composer install"
+    },
     "laravel": {
       "providers": [
         "FlatFileCms\\Publish\\ServiceProvider"
@@ -41,6 +55,8 @@
     "orchestra/testbench": "^3.8",
     "mikey179/vfsstream": "^1.6",
     "phpunit/phpunit": "^8.3",
-    "spatie/phpunit-watcher": "^1.11"
+    "spatie/phpunit-watcher": "^1.11",
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "brainmaestro/composer-git-hooks": "^2.7"
   }
 }

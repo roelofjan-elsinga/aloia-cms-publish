@@ -37,25 +37,19 @@ class AtomFeedGeneratorCommand extends Command
         $articles = Article::published()
 
             ->filter(function (Article $article) {
-
                 return empty($article->url());
-
             })
 
             ->map(function (Article $article) {
-
                 return ArticleFeedItem::forArticle($article);
-
             });
 
         $configuration = new AtomFeedConfiguration();
 
         $generator = AtomFeedGenerator::withConfiguration($configuration);
 
-        $articles->each(function(ArticleFeedItem $item) use ($generator) {
-
+        $articles->each(function (ArticleFeedItem $item) use ($generator) {
             $generator->add($item);
-
         });
 
         $atom_string = $generator->generate();

@@ -3,7 +3,6 @@
 
 namespace FlatFileCms\Publish;
 
-
 use AtomFeedGenerator\FeedConfiguration;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
