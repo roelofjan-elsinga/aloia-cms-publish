@@ -1,11 +1,10 @@
-<p align="center">
+# Flat File CMS Publishing module
+
 <a href="https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish"><img src="https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish.svg" alt="Build Status"></a>
+<img src="https://github.styleci.io/repos/202364633/shield" alt="StyleCI Status">
 <a href="https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish"><img src="https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/downloads" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish"><img src="https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/v/stable" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish"><img src="https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/license" alt="License"></a>
-</p>
-
-# Flat File CMS Publishing module
 
 This is a self publishing module for [Flat File CMS](https://github.com/roelofjan-elsinga/flat-file-cms).
 
