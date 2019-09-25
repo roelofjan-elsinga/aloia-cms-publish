@@ -1,10 +1,11 @@
 # Flat File CMS Publishing module
 
-<a href="https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish"><img src="https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish.svg" alt="Build Status"></a>
-<img src="https://github.styleci.io/repos/202364633/shield" alt="StyleCI Status">
-<a href="https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish"><img src="https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/downloads" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish"><img src="https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/v/stable" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish"><img src="https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/license" alt="License"></a>
+[![Build status](https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish.svg)](https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish)
+[![StyleCI Status](https://github.styleci.io/repos/202364633/shield)](https://github.styleci.io/repos/202364633)
+[![Code coverage](https://codecov.io/gh/roelofjan-elsinga/flat-file-cms-publish/branch/master/graph/badge.svg)](https://codecov.io/gh/roelofjan-elsinga/flat-file-cms-publish)
+[![Total Downloads](https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/downloads)](https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish)
+[![Latest Stable Version](https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/v/stable)](https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish)
+[![License](https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/license)](https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish)
 
 This is a self publishing module for [Flat File CMS](https://github.com/roelofjan-elsinga/flat-file-cms).
 
