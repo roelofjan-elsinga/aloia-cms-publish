@@ -121,7 +121,9 @@ class SitemapCreator extends Command
      */
     private function persistUrlsToSitemap(string $sitemap)
     {
-        unlink($this->sitemap_file_path);
+        if (file_exists($this->sitemap_file_path)) {
+            unlink($this->sitemap_file_path);
+        }
 
         file_put_contents($this->sitemap_file_path, $sitemap);
     }
