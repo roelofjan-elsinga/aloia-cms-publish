@@ -48,8 +48,8 @@
   "require": {
     "ext-mbstring": "*",
     "roelofjan-elsinga/flat-file-cms": "~0.12",
-    "roelofjan-elsinga/atom-feed-generator": "^0.1.0",
-    "roelofjan-elsinga/sitemap-generator": "^0.3.0"
+    "roelofjan-elsinga/atom-feed-generator": "~0.1",
+    "roelofjan-elsinga/sitemap-generator": "~0.3"
   },
   "require-dev": {
     "orchestra/testbench": "^3.8",
