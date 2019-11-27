@@ -3,6 +3,7 @@
 namespace FlatFileCms\Publish\Console;
 
 use FlatFileCms\Article;
+use FlatFileCms\Publish\Tasks\ConvertAtomFeedToRss;
 use FlatFileCms\Publish\Tasks\GenerateFeed;
 use FlatFileCms\Publish\Tasks\GenerateSitemap;
 use FlatFileCms\Publish\Tasks\MarkPostsForTodayAsActive;
@@ -32,6 +33,7 @@ class PublishScheduledPosts extends TaskCommand
     protected $tasks = [
         MarkPostsForTodayAsActive::class,
         GenerateFeed::class,
+        ConvertAtomFeedToRss::class,
         GenerateSitemap::class
     ];
 

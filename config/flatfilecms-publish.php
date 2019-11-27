@@ -70,6 +70,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Flat File CMS Publish RSS feed file location
+    |--------------------------------------------------------------------------
+    |
+    | This file path will be used to save the RSS feed to an XML file
+    |
+    */
+
+    'rss_file_path' => storage_path('app/rss.xml'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Flat File CMS Publish Sitemap file location
     |--------------------------------------------------------------------------
     |
