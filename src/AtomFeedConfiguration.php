@@ -1,7 +1,7 @@
 <?php
 
 
-namespace FlatFileCms\Publish;
+namespace AloiaCms\Publish;
 
 use AtomFeedGenerator\FeedConfiguration;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class AtomFeedConfiguration implements FeedConfiguration
      */
     public function title(): string
     {
-        return Config::get('flatfilecms-publish.title');
+        return Config::get('aloiacms-publish.title');
     }
 
     /**
@@ -26,7 +26,7 @@ class AtomFeedConfiguration implements FeedConfiguration
      */
     public function siteUrl(): string
     {
-        return Config::get('flatfilecms-publish.site_url');
+        return Config::get('aloiacms-publish.site_url');
     }
 
     /**
@@ -36,7 +36,7 @@ class AtomFeedConfiguration implements FeedConfiguration
      */
     public function feedUrl(): string
     {
-        $feed_path = Config::get('flatfilecms-publish.feed_path');
+        $feed_path = Config::get('aloiacms-publish.feed_path');
 
         $feed_prefix = $feed_path[0] === '/' ? '' : '/';
 
@@ -60,7 +60,7 @@ class AtomFeedConfiguration implements FeedConfiguration
      */
     public function author(): string
     {
-        return Config::get('flatfilecms-publish.author');
+        return Config::get('aloiacms-publish.author');
     }
 
     /**
@@ -70,6 +70,6 @@ class AtomFeedConfiguration implements FeedConfiguration
      */
     public function identifier(): string
     {
-        return Config::get('flatfilecms-publish.feed_id');
+        return Config::get('aloiacms-publish.feed_id');
     }
 }

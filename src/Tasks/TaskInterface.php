@@ -1,7 +1,7 @@
 <?php
 
 
-namespace FlatFileCms\Publish\Tasks;
+namespace AloiaCms\Publish\Tasks;
 
 interface TaskInterface
 {

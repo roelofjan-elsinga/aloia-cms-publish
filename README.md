@@ -20,7 +20,7 @@ composer require roelofjan-elsinga/flat-file-cms-publish
 and if you want to customize the folder structure, then publish the configuration through:
 
 ```bash
-php artisan vendor:publish --provider="FlatFileCms\\Publish\\ServiceProvider"
+php artisan vendor:publish --provider="AloiaCms\\Publish\\ServiceProvider"
 ```
 
 ## Overwriting the sitemap command
@@ -34,7 +34,7 @@ namespace App\Console\Commands;
 
 use SitemapGenerator\SitemapGenerator;
 
-class SitemapCreator extends \FlatFileCms\Publish\Console\SitemapCreator
+class SitemapCreator extends \AloiaCms\Publish\Console\SitemapCreator
 {
 
     /**
@@ -71,7 +71,7 @@ and register this new command in the AppServiceProvider:
 ```php
 public function register()
 {
-    $this->app->bind(\FlatFileCms\Publish\Console\SitemapCreator::class, function () {
+    $this->app->bind(\AloiaCms\Publish\Console\SitemapCreator::class, function () {
         return new \App\Console\Commands\SitemapCreator();
     });
 }

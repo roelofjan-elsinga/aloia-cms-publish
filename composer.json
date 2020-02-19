@@ -1,6 +1,6 @@
 {
-  "name": "roelofjan-elsinga/flat-file-cms-publish",
-  "description": "A publishing plugin for roelofjan-elsinga/flat-file-cms.",
+  "name": "roelofjan-elsinga/aloia-cms-publish",
+  "description": "A publishing plugin for roelofjan-elsinga/aloia-cms.",
   "keywords": [
     "laravel",
     "cms",
@@ -15,8 +15,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "FlatFileCms\\Publish\\": "src/",
-      "FlatFileCms\\Tests\\": "tests/"
+      "AloiaCms\\Publish\\": "src/",
+      "AloiaCms\\Tests\\": "tests/"
     }
   },
   "autoload-dev": {
@@ -41,14 +41,14 @@
     },
     "laravel": {
       "providers": [
-        "FlatFileCms\\Publish\\ServiceProvider"
+        "AloiaCms\\Publish\\ServiceProvider"
       ]
     }
   },
   "require": {
     "ext-mbstring": "*",
-    "roelofjan-elsinga/flat-file-cms": "~0.12",
-    "roelofjan-elsinga/atom-feed-generator": "~0.1",
+    "roelofjan-elsinga/aloia-cms": "1.0.0",
+    "roelofjan-elsinga/atom-feed-generator": "^0.2.2",
     "roelofjan-elsinga/sitemap-generator": "~0.3"
   },
   "require-dev": {

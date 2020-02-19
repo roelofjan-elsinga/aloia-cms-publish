@@ -1,22 +1,22 @@
 <?php
 
-namespace FlatFileCms\Publish\Console;
+namespace AloiaCms\Publish\Console;
 
+use AloiaCms\Models\Article;
 use AtomFeedGenerator\AtomFeedGenerator;
-use FlatFileCms\Publish\AtomFeedConfiguration;
-use FlatFileCms\Publish\Transformers\ArticleFeedItem;
+use AloiaCms\Publish\AtomFeedConfiguration;
+use AloiaCms\Publish\Transformers\ArticleFeedItem;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
-use FlatFileCms\Article;
 
-class AtomFeedGeneratorCommand extends Command
+class GenerateAtomFeed extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'flatfilecms:publish:feed';
+    protected $signature = 'aloiacms:publish:feed';
 
     /**
      * The console command description.
@@ -37,7 +37,7 @@ class AtomFeedGeneratorCommand extends Command
         $articles = Article::published()
 
             ->filter(function (Article $article) {
-                return empty($article->url());
+                return !empty($article->slug());
             })
 
             ->map(function (Article $article) {
@@ -54,7 +54,7 @@ class AtomFeedGeneratorCommand extends Command
 
         $atom_string = $generator->generate();
 
-        file_put_contents(Config::get('flatfilecms-publish.atom_file_path'), $atom_string);
+        file_put_contents(Config::get('aloiacms-publish.atom_file_path'), $atom_string);
 
         $this->info("Generated Atom feed");
     }

@@ -1,11 +1,10 @@
 <?php
 
 
-namespace FlatFileCms\Publish\Tasks;
+namespace AloiaCms\Publish\Tasks;
 
 use Carbon\Carbon;
-use FlatFileCms\Article;
-use Illuminate\Support\Collection;
+use AloiaCms\Models\Article;
 
 class MarkPostsForTodayAsActive implements TaskInterface
 {
@@ -15,36 +14,15 @@ class MarkPostsForTodayAsActive implements TaskInterface
      */
     public function run()
     {
-        $posts = $this->getPosts()
-            ->map(function ($post) {
-                $postDate = Carbon::createFromFormat('Y-m-d', $post['postDate']);
+        Article::all()
+            ->each(function (Article $post) {
+                $is_published = $post->isPublished() || Carbon::now()->greaterThanOrEqualTo($post->getPostDate()) && $post->isScheduled();
+                $is_scheduled = $post->isPublished() ? false : $post->isScheduled();
 
-                $post['isPublished'] = $post['isPublished'] || Carbon::now()->greaterThanOrEqualTo($postDate) && $post['isScheduled'];
-                $post['isScheduled'] = $post['isPublished'] ? false : $post['isScheduled'];
-
-                return $post;
+                $post
+                    ->addMatter('is_published', $is_published)
+                    ->addMatter('is_scheduled', $is_scheduled)
+                    ->save();
             });
-
-        $this->writeToFile($posts);
-    }
-
-    /**
-     * Get the posts from the meta data file
-     *
-     * @return array
-     */
-    private function getPosts(): Collection
-    {
-        return Article::raw();
-    }
-
-    /**
-     * Write changes to the post in the meta data file
-     *
-     * @param array $posts
-     */
-    private function writeToFile(Collection $posts): void
-    {
-        Article::update($posts);
     }
 }

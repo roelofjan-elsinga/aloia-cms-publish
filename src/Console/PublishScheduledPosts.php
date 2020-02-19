@@ -1,13 +1,12 @@
 <?php
 
-namespace FlatFileCms\Publish\Console;
+namespace AloiaCms\Publish\Console;
 
-use FlatFileCms\Article;
-use FlatFileCms\Publish\Tasks\ConvertAtomFeedToRss;
-use FlatFileCms\Publish\Tasks\GenerateFeed;
-use FlatFileCms\Publish\Tasks\GenerateSitemap;
-use FlatFileCms\Publish\Tasks\MarkPostsForTodayAsActive;
-use Illuminate\Support\Collection;
+use AloiaCms\Models\Article;
+use AloiaCms\Publish\Tasks\ConvertAtomFeedToRss;
+use AloiaCms\Publish\Tasks\GenerateFeed;
+use AloiaCms\Publish\Tasks\GenerateSitemap;
+use AloiaCms\Publish\Tasks\MarkPostsForTodayAsActive;
 
 class PublishScheduledPosts extends TaskCommand
 {
@@ -16,7 +15,7 @@ class PublishScheduledPosts extends TaskCommand
      *
      * @var string
      */
-    protected $signature = 'flatfilecms:publish:posts {--date=}';
+    protected $signature = 'aloiacms:publish:posts {--date=}';
 
     /**
      * The console command description.
@@ -44,9 +43,7 @@ class PublishScheduledPosts extends TaskCommand
      */
     public function handle()
     {
-        $posts = $this->getPosts();
-
-        $post_for_today = $this->getPostForToday($posts);
+        $post_for_today = $this->getPostForToday();
 
         if (!is_null($post_for_today)) {
             foreach ($this->tasks() as $task) {
@@ -55,25 +52,19 @@ class PublishScheduledPosts extends TaskCommand
                 (new $task)->run();
             }
 
-            $this->info('Published the post for today');
+            $this->info('Published posts for today');
         } else {
             $this->info("No post scheduled for today");
         }
     }
 
-    private function getPosts(): Collection
+    private function getPostForToday(): ?Article
     {
-        return Article::raw();
-    }
-
-    private function getPostForToday(Collection $posts): ?array
-    {
-        return collect($posts)
-            ->filter(function ($post) {
+        return Article::all()
+            ->filter(function (Article $post) {
                 $date = $this->option('date') ?? date('Y-m-d');
 
-                return $post['postDate'] === $date
-                    && $post['isScheduled'] === true;
+                return $post->getPostDate()->toDateString() === $date && $post->isScheduled();
             })
             ->first();
     }

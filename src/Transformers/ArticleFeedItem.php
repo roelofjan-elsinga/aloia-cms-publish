@@ -1,25 +1,25 @@
 <?php
 
 
-namespace FlatFileCms\Publish\Transformers;
+namespace AloiaCms\Publish\Transformers;
 
+use AloiaCms\Models\Article;
 use AtomFeedGenerator\FeedItem;
 use Carbon\Carbon;
-use FlatFileCms\Contracts\ArticleInterface;
 use Illuminate\Support\Facades\Config;
 
 class ArticleFeedItem implements FeedItem
 {
     /**
-     * @var ArticleInterface
+     * @var Article
      */
     private $article;
 
     /**
      * ArticleFeedItem constructor.
-     * @param ArticleInterface $article
+     * @param Article $article
      */
-    public function __construct(ArticleInterface $article)
+    public function __construct(Article $article)
     {
         $this->article = $article;
     }
@@ -27,10 +27,10 @@ class ArticleFeedItem implements FeedItem
     /**
      * Named constructor.
      *
-     * @param ArticleInterface $article
+     * @param Article $article
      * @return ArticleFeedItem
      */
-    public static function forArticle(ArticleInterface $article): ArticleFeedItem
+    public static function forArticle(Article $article): ArticleFeedItem
     {
         return new static($article);
     }
@@ -53,7 +53,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function url(): string
     {
-        $article_path = Config::get('flatfilecms-publish.article_path');
+        $article_path = Config::get('aloiacms-publish.article_path');
 
         $article_path = $article_path[0] === '/' ? substr($article_path, 1) : $article_path;
 
@@ -70,7 +70,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function content(): string
     {
-        return strip_tags($this->article->content(), ENT_QUOTES);
+        return $this->article->body();
     }
 
     /**
@@ -81,7 +81,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function summary(): string
     {
-        return rtrim(mb_strimwidth($this->content(), 0, 300)) . "[...]";
+        return $this->article->description();
     }
 
     /**
@@ -103,7 +103,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageUrl(): string
     {
-        $domain = Config::get('flatfilecms-publish.site_url');
+        $domain = Config::get('aloiacms-publish.site_url');
 
         $image_url = $this->article->image();
 
@@ -120,7 +120,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageMimeType(): string
     {
-        $image_size = getimagesize(public_path($this->article->image()));
+        $image_size = getimagesize($this->imageUrl());
 
         return $image_size['mime'];
     }
@@ -133,7 +133,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageWidth(): int
     {
-        $image_size = getimagesize(public_path($this->article->image()));
+        $image_size = getimagesize($this->imageUrl());
 
         return $image_size[0];
     }
@@ -146,7 +146,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageHeight(): int
     {
-        $image_size = getimagesize(public_path($this->article->image()));
+        $image_size = getimagesize($this->imageUrl());
 
         return $image_size[1];
     }
@@ -158,7 +158,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function createdAt(): Carbon
     {
-        return $this->article->rawPostDate()->setTimeFromTimeString("12:00:00");
+        return $this->article->getPostDate()->setTimeFromTimeString("12:00:00");
     }
 
     /**
@@ -168,6 +168,6 @@ class ArticleFeedItem implements FeedItem
      */
     public function updatedAt(): Carbon
     {
-        return $this->article->rawUpdatedDate();
+        return $this->article->getUpdateDate() ?? $this->createdAt();
     }
 }

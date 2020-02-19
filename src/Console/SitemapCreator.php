@@ -1,14 +1,13 @@
 <?php
 
-namespace FlatFileCms\Publish\Console;
+namespace AloiaCms\Publish\Console;
 
 use Carbon\Carbon;
-use FlatFileCms\Page;
+use AloiaCms\Models\Page;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use FlatFileCms\Article;
+use AloiaCms\Models\Article;
 use SitemapGenerator\SitemapGenerator;
 
 class SitemapCreator extends Command
@@ -31,7 +30,7 @@ class SitemapCreator extends Command
      *
      * @var string
      */
-    protected $signature = 'flatfilecms:publish:sitemap';
+    protected $signature = 'aloiacms:publish:sitemap';
 
     /**
      * The console command description.
@@ -47,9 +46,9 @@ class SitemapCreator extends Command
     {
         parent::__construct();
 
-        $this->domain = Config::get('flatfilecms-publish.site_url');
-        $this->sitemap_file_path = Config::get('flatfilecms-publish.sitemap_file_path');
-        $this->sitemap_target_file_path = Config::get('flatfilecms-publish.sitemap_target_file_path');
+        $this->domain = Config::get('aloiacms-publish.site_url');
+        $this->sitemap_file_path = Config::get('aloiacms-publish.sitemap_file_path');
+        $this->sitemap_target_file_path = Config::get('aloiacms-publish.sitemap_target_file_path');
         $this->lastmod = Carbon::now()->toDateString();
     }
 
@@ -72,7 +71,7 @@ class SitemapCreator extends Command
         }
 
         foreach (Page::published() as $page) {
-            $generator->add($page->slug(), 0.9, $this->lastmod, 'monthly');
+            $generator->add($page->url(), 0.9, $this->lastmod, 'monthly');
         }
 
         $article_urls = $this->getArticleUrls();
@@ -100,10 +99,10 @@ class SitemapCreator extends Command
     {
         return Article::published()
             ->filter(function (Article $article) {
-                return empty($article->url());
+                return empty($article->externalUrl());
             })
             ->map(function (Article $article) {
-                $article_path = Config::get('flatfilecms-publish.article_path');
+                $article_path = Config::get('aloiacms-publish.article_path');
 
                 $article_path_prefix = $article_path[0] === '/' ? '' : '/';
 
@@ -131,7 +130,10 @@ class SitemapCreator extends Command
     private function createSymlinkForSitemap()
     {
         if (!file_exists($this->sitemap_target_file_path)) {
+            // @codeCoverageIgnoreStart
+            // This cannot be executed in the tests and is a known issue
             File::link($this->sitemap_file_path, $this->sitemap_target_file_path);
+            // @codeCoverageIgnoreEnd
         }
     }
 

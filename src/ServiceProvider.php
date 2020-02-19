@@ -1,28 +1,28 @@
 <?php
 
 
-namespace FlatFileCms\Publish;
+namespace AloiaCms\Publish;
 
-use FlatFileCms\Publish\Console\AtomFeedGeneratorCommand;
-use FlatFileCms\Publish\Console\PublishScheduledPosts;
-use FlatFileCms\Publish\Console\SitemapCreator;
+use AloiaCms\Publish\Console\GenerateAtomFeed;
+use AloiaCms\Publish\Console\PublishScheduledPosts;
+use AloiaCms\Publish\Console\SitemapCreator;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/flatfilecms-publish.php', 'flatfilecms-publish');
+        $this->mergeConfigFrom(__DIR__ . '/../config/aloiacms-publish.php', 'aloiacms-publish');
     }
 
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/flatfilecms-publish.php' => config_path('flatfilecms-publish.php'),
+            __DIR__ . '/../config/aloiacms-publish.php' => config_path('aloiacms-publish.php'),
         ], 'config');
 
         $this->commands([
-            AtomFeedGeneratorCommand::class,
+            GenerateAtomFeed::class,
             PublishScheduledPosts::class,
             SitemapCreator::class
         ]);

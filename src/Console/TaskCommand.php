@@ -1,6 +1,6 @@
 <?php
 
-namespace FlatFileCms\Publish\Console;
+namespace AloiaCms\Publish\Console;
 
 use Illuminate\Console\Command;
 

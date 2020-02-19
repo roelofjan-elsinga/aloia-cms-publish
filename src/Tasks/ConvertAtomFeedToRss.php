@@ -1,7 +1,7 @@
 <?php
 
 
-namespace FlatFileCms\Publish\Tasks;
+namespace AloiaCms\Publish\Tasks;
 
 use DOMDocument;
 use Illuminate\Support\Facades\Config;
@@ -18,7 +18,7 @@ class ConvertAtomFeedToRss implements TaskInterface
     public function run()
     {
         $chan = new DOMDocument();
-        $chan->load(Config::get('flatfilecms-publish.atom_file_path'));
+        $chan->load(Config::get('aloiacms-publish.atom_file_path'));
 
         $sheet = new DOMDocument();
         $stylesheet_path = __DIR__ . '../../../resources/atom2rss.xsl';
@@ -29,7 +29,7 @@ class ConvertAtomFeedToRss implements TaskInterface
         $processor->importStylesheet($sheet);
 
         file_put_contents(
-            Config::get('flatfilecms-publish.rss_file_path'),
+            Config::get('aloiacms-publish.rss_file_path'),
             $processor->transformToXML($chan)
         );
     }

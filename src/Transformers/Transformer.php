@@ -1,9 +1,9 @@
 <?php
 
-namespace FlatFileCms\Publish\Transformers;
+namespace AloiaCms\Publish\Transformers;
 
 use AtomFeedGenerator\FeedItem;
-use FlatFileCms\Contracts\ArticleInterface;
+use AloiaCms\Contracts\ArticleInterface;
 
 interface Transformer
 {
