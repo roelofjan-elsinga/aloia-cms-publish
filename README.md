@@ -1,20 +1,20 @@
 # Flat File CMS Publishing module
 
-[![Build status](https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish.svg)](https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish)
+[![Build status](https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish.svg)](https://travis-ci.com/roelofjan-elsinga/aloia-cms-publish)
 [![StyleCI Status](https://github.styleci.io/repos/202364633/shield)](https://github.styleci.io/repos/202364633)
-[![Code coverage](https://codecov.io/gh/roelofjan-elsinga/flat-file-cms-publish/branch/master/graph/badge.svg)](https://codecov.io/gh/roelofjan-elsinga/flat-file-cms-publish)
-[![Total Downloads](https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/downloads)](https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish)
-[![Latest Stable Version](https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/v/stable)](https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish)
-[![License](https://poser.pugx.org/roelofjan-elsinga/flat-file-cms-publish/license)](https://packagist.org/packages/roelofjan-elsinga/flat-file-cms-publish)
+[![Code coverage](https://codecov.io/gh/roelofjan-elsinga/aloia-cms-publish/branch/master/graph/badge.svg)](https://codecov.io/gh/roelofjan-elsinga/aloia-cms-publish)
+[![Total Downloads](https://poser.pugx.org/roelofjan-elsinga/aloia-cms-publish/downloads)](https://packagist.org/packages/roelofjan-elsinga/aloia-cms-publish)
+[![Latest Stable Version](https://poser.pugx.org/roelofjan-elsinga/aloia-cms-publish/v/stable)](https://packagist.org/packages/roelofjan-elsinga/aloia-cms-publish)
+[![License](https://poser.pugx.org/roelofjan-elsinga/aloia-cms-publish/license)](https://packagist.org/packages/roelofjan-elsinga/aloia-cms-publish)
 
-This is a self publishing module for [Flat File CMS](https://github.com/roelofjan-elsinga/flat-file-cms).
+This is a self publishing module for [Aloia CMS](https://github.com/roelofjan-elsinga/aloia-cms).
 
 ## Installation
 
 You can include this package through Composer using:
 
 ```bash
-composer require roelofjan-elsinga/flat-file-cms-publish
+composer require roelofjan-elsinga/aloia-cms-publish
 ```
 
 and if you want to customize the folder structure, then publish the configuration through:
