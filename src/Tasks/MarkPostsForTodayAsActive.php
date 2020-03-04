@@ -16,8 +16,8 @@ class MarkPostsForTodayAsActive implements TaskInterface
     {
         Article::all()
             ->each(function (Article $post) {
-                $is_published = $post->isPublished() || Carbon::now()->greaterThanOrEqualTo($post->getPostDate()) && $post->isScheduled();
-                $is_scheduled = $post->isPublished() ? false : $post->isScheduled();
+                $is_published = $post->isPublished() || (Carbon::now()->greaterThanOrEqualTo($post->getPostDate()) && $post->isScheduled());
+                $is_scheduled = $is_published ? false : $post->isScheduled();
 
                 $post
                     ->addMatter('is_published', $is_published)
