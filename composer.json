@@ -48,7 +48,7 @@
   "require": {
     "ext-mbstring": "*",
     "roelofjan-elsinga/aloia-cms": "^1.0",
-    "roelofjan-elsinga/atom-feed-generator": "^0.2.2",
+    "roelofjan-elsinga/atom-feed-generator": "^0.2.3",
     "roelofjan-elsinga/sitemap-generator": "~0.3"
   },
   "require-dev": {
