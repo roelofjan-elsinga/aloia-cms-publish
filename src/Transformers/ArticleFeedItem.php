@@ -81,7 +81,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function summary(): string
     {
-        return $this->article->description();
+        return htmlentities($this->article->description());
     }
 
     /**
