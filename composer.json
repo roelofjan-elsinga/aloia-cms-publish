@@ -47,14 +47,14 @@
   },
   "require": {
     "ext-mbstring": "*",
-    "roelofjan-elsinga/aloia-cms": "^1.0",
+    "roelofjan-elsinga/aloia-cms": "^2.0",
     "roelofjan-elsinga/atom-feed-generator": "^0.2.3",
     "roelofjan-elsinga/sitemap-generator": "~0.3"
   },
   "require-dev": {
     "orchestra/testbench": "^3.8",
     "mikey179/vfsstream": "^1.6",
-    "phpunit/phpunit": "^8.3",
+    "phpunit/phpunit": "^8.5",
     "spatie/phpunit-watcher": "^1.11",
     "friendsofphp/php-cs-fixer": "^2.15",
     "brainmaestro/composer-git-hooks": "^2.7"
