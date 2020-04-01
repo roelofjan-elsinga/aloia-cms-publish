@@ -1,6 +1,6 @@
-# Flat File CMS Publishing module
+# Aloia CMS Publishing module
 
-[![Build status](https://travis-ci.com/roelofjan-elsinga/flat-file-cms-publish.svg)](https://travis-ci.com/roelofjan-elsinga/aloia-cms-publish)
+[![Build status](https://travis-ci.com/roelofjan-elsinga/aloia-cms-publish.svg)](https://travis-ci.com/roelofjan-elsinga/aloia-cms-publish)
 [![StyleCI Status](https://github.styleci.io/repos/202364633/shield)](https://github.styleci.io/repos/202364633)
 [![Code coverage](https://codecov.io/gh/roelofjan-elsinga/aloia-cms-publish/branch/master/graph/badge.svg)](https://codecov.io/gh/roelofjan-elsinga/aloia-cms-publish)
 [![Total Downloads](https://poser.pugx.org/roelofjan-elsinga/aloia-cms-publish/downloads)](https://packagist.org/packages/roelofjan-elsinga/aloia-cms-publish)
