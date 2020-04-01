@@ -47,9 +47,9 @@
   },
   "require": {
     "ext-mbstring": "*",
-    "roelofjan-elsinga/aloia-cms": "^3.0",
-    "roelofjan-elsinga/atom-feed-generator": "^0.2.3",
-    "roelofjan-elsinga/sitemap-generator": "~0.3"
+    "roelofjan-elsinga/aloia-cms": "^2.0|^3.0",
+    "roelofjan-elsinga/atom-feed-generator": "^0.2",
+    "roelofjan-elsinga/sitemap-generator": "^0.4"
   },
   "require-dev": {
     "orchestra/testbench": "^5.1",
