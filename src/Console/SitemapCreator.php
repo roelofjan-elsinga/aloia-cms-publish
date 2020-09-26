@@ -99,7 +99,7 @@ class SitemapCreator extends Command
     {
         return Article::published()
             ->filter(function (Article $article) {
-                return empty($article->externalUrl());
+                return empty($article->externalUrl()) && empty($article->canonicalLink());
             })
             ->map(function (Article $article) {
                 $article_path = Config::get('aloiacms-publish.article_path');
