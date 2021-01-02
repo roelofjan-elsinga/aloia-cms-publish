@@ -7,6 +7,7 @@ use AloiaCms\Models\Article;
 use AtomFeedGenerator\FeedItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 
 class ArticleFeedItem implements FeedItem
 {
@@ -107,9 +108,33 @@ class ArticleFeedItem implements FeedItem
 
         $image_url = $this->article->image();
 
+        // Return URL if external image
+        if (!is_null(parse_url($image_url, PHP_URL_HOST))) {
+            return $image_url;
+        }
+
         $image_prefix = $image_url[0] === '/' ? '' : '/';
 
         return $domain . $image_prefix . $image_url;
+    }
+
+    /**
+     * Get the path of the article image, return absolute path if it's not an external URL
+     *
+     * @return string
+     * @throws \Exception
+     */
+    private function imagePath(): string
+    {
+        $image_url = $this->article->image();
+
+        if (!is_null(parse_url($image_url, PHP_URL_HOST))) {
+            return $image_url;
+        } else {
+            $image_prefix = $image_url[0] === '/' ? '' : '/';
+
+            return public_path($image_prefix . $image_url);
+        }
     }
 
     /**
@@ -120,7 +145,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageMimeType(): string
     {
-        $image_size = getimagesize($this->imageUrl());
+        $image_size = getimagesize($this->imagePath());
 
         return $image_size['mime'];
     }
@@ -133,7 +158,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageWidth(): int
     {
-        $image_size = getimagesize($this->imageUrl());
+        $image_size = getimagesize($this->imagePath());
 
         return $image_size[0];
     }
@@ -146,7 +171,7 @@ class ArticleFeedItem implements FeedItem
      */
     public function imageHeight(): int
     {
-        $image_size = getimagesize($this->imageUrl());
+        $image_size = getimagesize($this->imagePath());
 
         return $image_size[1];
     }
@@ -169,5 +194,28 @@ class ArticleFeedItem implements FeedItem
     public function updatedAt(): Carbon
     {
         return $this->article->getUpdateDate() ?? $this->createdAt();
+    }
+
+    /**
+     * Determine whether the input is a valid URL
+     *
+     * @param $value
+     * @return bool
+     */
+    private function isUrl($value): bool
+    {
+        if (! is_string($value)) {
+            return false;
+        }
+
+        if ($url = parse_url($value, PHP_URL_HOST)) {
+            try {
+                return count(dns_get_record($url, DNS_A | DNS_AAAA)) > 0;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
+
+        return false;
     }
 }

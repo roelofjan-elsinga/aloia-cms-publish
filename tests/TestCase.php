@@ -39,6 +39,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $content_path = $this->fs->getChild('content')->url();
 
+        $this->app->bind('path.public', fn () => realpath(__DIR__.'/assets'));
+
         Config::set('aloiacms-publish.site_url', "{$content_path}/images");
         Config::set('aloiacms-publish.atom_file_path', "{$content_path}/atom.xml");
         Config::set('aloiacms-publish.rss_file_path', "{$content_path}/rss.xml");
