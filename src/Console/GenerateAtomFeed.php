@@ -3,6 +3,7 @@
 namespace AloiaCms\Publish\Console;
 
 use AloiaCms\Models\Article;
+use AloiaCms\Publish\Tasks\ConvertAtomFeedToRss;
 use AtomFeedGenerator\AtomFeedGenerator;
 use AloiaCms\Publish\AtomFeedConfiguration;
 use AloiaCms\Publish\Transformers\ArticleFeedItem;
@@ -57,5 +58,9 @@ class GenerateAtomFeed extends Command
         file_put_contents(Config::get('aloiacms-publish.atom_file_path'), $atom_string);
 
         $this->info("Generated Atom feed");
+
+        (new ConvertAtomFeedToRss())->run();
+
+        $this->info("Generated RSS feed");
     }
 }
