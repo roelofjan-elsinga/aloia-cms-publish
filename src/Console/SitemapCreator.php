@@ -62,8 +62,7 @@ class SitemapCreator extends Command
         $generator = SitemapGenerator::boot($this->domain);
 
         $urls = [
-            '/' => 1,
-            '/articles' => 0.9
+            '/' => 1
         ];
 
         foreach ($urls as $url => $priority) {
