@@ -9,7 +9,6 @@ use XSLTProcessor;
 
 class ConvertAtomFeedToRss implements TaskInterface
 {
-
     /**
      * Run this task
      *

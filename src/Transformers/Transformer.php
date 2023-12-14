@@ -7,7 +7,6 @@ use AloiaCms\Contracts\ArticleInterface;
 
 interface Transformer
 {
-
     /**
      * Set the transformer source
      *

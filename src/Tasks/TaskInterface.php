@@ -5,7 +5,6 @@ namespace AloiaCms\Publish\Tasks;
 
 interface TaskInterface
 {
-
     /**
      * Run this task
      *

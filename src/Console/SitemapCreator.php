@@ -12,7 +12,6 @@ use SitemapGenerator\SitemapGenerator;
 
 class SitemapCreator extends Command
 {
-
     /**@var string*/
     private $domain;
 

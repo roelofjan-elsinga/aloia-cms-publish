@@ -8,7 +8,6 @@ use AloiaCms\Models\Article;
 
 class MarkPostsForTodayAsActive implements TaskInterface
 {
-
     /**
      * Run this task
      */
