@@ -43,7 +43,7 @@
   },
   "require": {
     "ext-mbstring": "*",
-    "roelofjan-elsinga/aloia-cms": "^4.0",
+    "roelofjan-elsinga/aloia-cms": "^4.4",
     "roelofjan-elsinga/atom-feed-generator": "^0.2",
     "roelofjan-elsinga/sitemap-generator": "^0.6"
   },

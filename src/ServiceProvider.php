@@ -6,7 +6,9 @@ namespace AloiaCms\Publish;
 use AloiaCms\Publish\Console\GenerateAtomFeed;
 use AloiaCms\Publish\Console\PublishScheduledPosts;
 use AloiaCms\Publish\Console\SitemapCreator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\Str;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -26,5 +28,9 @@ class ServiceProvider extends BaseServiceProvider
             PublishScheduledPosts::class,
             SitemapCreator::class
         ]);
+
+        Collection::macro('keysToSnakeCase', function () {
+            return $this->mapWithKeys(fn ($value, $key) => [Str::snake($key) => $value]);
+        });
     }
 }
