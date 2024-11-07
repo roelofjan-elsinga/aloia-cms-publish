@@ -4,16 +4,19 @@ on: [push]
 
 jobs:
   build-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Cache Composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: /tmp/composer-cache
           key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
       - uses: php-actions/composer@v6
+        with:
+          php_version: "8.2"
+          version: '2.x'
       - name: "Run PHPUnit"
         run: |
           sudo chmod -R 777 vendor/orchestra/testbench-core/laravel
