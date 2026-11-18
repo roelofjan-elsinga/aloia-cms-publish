@@ -3,4 +3,8 @@ vendor/
 .phpunit.result.cache
 .php_cs.cache
 coverage/
+coverage.xml
 atom.xml
+cghooks.lock
+.php-cs-fixer.cache
+.phpunit.cache

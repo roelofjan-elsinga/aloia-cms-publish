@@ -39,7 +39,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $content_path = $this->fs->getChild('content')->url();
 
-        $this->app->bind('path.public', fn () => realpath(__DIR__.'/assets'));
+        // Laravel 10+ resolves public_path() from Application::$publicPath rather
+        // than the 'path.public' container binding, so binding that is a no-op.
+        $this->app->usePublicPath(realpath(__DIR__.'/assets'));
 
         Config::set('aloiacms-publish.site_url', "{$content_path}/images");
         Config::set('aloiacms-publish.atom_file_path', "{$content_path}/atom.xml");
